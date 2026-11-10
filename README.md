@@ -1,4 +1,6 @@
-# Polymarket: what a taker pays
+# poly-bps-of-mid
+
+What a taker pays on Polymarket, quoted in basis points of mid.
 
 A measurement of execution cost on Polymarket contracts, and of whether the
 price moves enough to matter against that cost.

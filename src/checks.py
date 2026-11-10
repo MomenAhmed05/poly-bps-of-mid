@@ -135,6 +135,11 @@ def main():
     dear_side = [r for r in rows if r["mid"] >= 0.98]
     entry_cheap = med([r["entry_bps"] for r in cheap_side])
     entry_dear = med([r["entry_bps"] for r in dear_side])
+    # the same entry cost restated per contract, which is where a 100x unit
+    # error hides: bps of a near-zero mid and bps of a near-one mid describe
+    # the same number of cents
+    cents_cheap = entry_cheap / 1e4 * med([r["mid"] for r in cheap_side]) * 100
+    cents_dear = entry_dear / 1e4 * med([r["mid"] for r in dear_side]) * 100
 
     quiet = [r["quiet_bars"] for r in lag]
     cover = [r["cover_hours"] for r in lag if r["cover_hours"]]
@@ -171,6 +176,8 @@ def main():
         ("entry cost on the cheap side (bps)", 2499, round(entry_cheap), "data"),
         ("entry cost on the dear side (bps)", 11, round(entry_dear), "data"),
         ("entry ratio, cheap over dear", 223, round(entry_cheap / entry_dear), "data"),
+        ("entry on the cheap side, cents per contract", 0.112, round(cents_cheap, 3), "data"),
+        ("entry on the dear side, cents per contract", 0.111, round(cents_dear, 3), "data"),
         ("tag assignments across all rows", 18246, sum(len(r["tags"]) for r in rows), "data"),
         ("spearman volume24h against total cost", -0.042,
          round(spearman([r["volume_24h"] or 0 for r in base], [r["total_bps"] for r in base]), 3), "data"),

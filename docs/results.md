@@ -71,8 +71,9 @@ is larger.
 | at or under 2c | 279 | 0.0045 | 2,222 bps | 2,499 bps | +0.112 |
 | at or over 98c | 279 | 0.9955 | 10 bps | 11 bps | +0.111 |
 
-Both sides cost about 11 cents per contract to enter. In bps the cheap side is
-223 times the dear side. Same trade, same cents, different denominator.
+Both sides cost about a tenth of a cent per contract to enter, $0.0011 either
+way. In bps the cheap side is 223 times the dear side. Same trade, same cost per
+contract, different denominator.
 
 ## What the entry cost demands of a view
 
